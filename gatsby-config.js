@@ -7,7 +7,10 @@
 require("dotenv").config()
 
 module.exports = {
-  /* Your site config here */
+  proxy: {
+    prefix: "/api",
+    url: "http://localhost:8000",
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,

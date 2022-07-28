@@ -19,10 +19,11 @@ const Home = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
-            Accept: "*/*",
+            Accept: "*",
             Connection: "keep-alive",
             "Cache-Control": "no-cache",
-            "Access-Control-Allow-Origin": "http://localhost:8000",
+            "Access-Control-Allow-Origin": "http://localhost:8000/",
+            "Access-Control-Allow-Credentials": "true",
           },
         })
 
