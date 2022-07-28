@@ -1,64 +1,118 @@
-import React from "React"
+import React, { useState } from "react"
 import styled from "styled-components"
+import NavLinks from "./NavLinks"
+import Logo from "./Logo"
 
 const Navbar = () => {
+  const [navbarOpen, setNavbarOpen] = useState(false)
+
   return (
-    <Container>
-      <Gradient>
-        <Logo>Logo</Logo>
-      </Gradient>
-      <NavLinks>
-        <Link>Home</Link>
-        <Link>Schedule</Link>
-        <Link>Drivers</Link>
-        <Link>About</Link>
-      </NavLinks>
-    </Container>
+    <>
+      <Navigation>
+        <Logo />
+        <Toggle
+          navbarOpen={navbarOpen}
+          onClick={() => setNavbarOpen(!navbarOpen)}
+        >
+          {navbarOpen ? <Hamburger open /> : <Hamburger />}
+        </Toggle>
+        {navbarOpen ? (
+          <Navbox>
+            <NavLinks />
+          </Navbox>
+        ) : (
+          <Navbox open>
+            <NavLinks />
+          </Navbox>
+        )}
+      </Navigation>
+    </>
   )
 }
 
-const Container = styled.div`
+const Navigation = styled.nav`
+  padding: 4px 4px 0px 4px;
+  height: 8vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   background-color: #fff;
-  height: 6vh;
-  border-bottom: 2px solid #000;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  border-bottom: 2px solid #33333320;
   margin: 0 auto;
   z-index: 2;
   align-self: center;
-`
 
-const Gradient = styled.span`
-  padding: 0 1em;
-  position: relative;
-  right: 1em;
-  margin-right: auto;
-
-  &:hover {
-    animation-name: logo-hover;
-    animation-duration: 0.3s;
-    animation-fill-model: forwards;
-    animation-timing-functional: cubic-bezier(0.17, 0.57, 0.31, 0.85);
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    position: sticky;
+    height: 8vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    left: 0;
   }
 `
 
-const Logo = styled.h1`
-  font-weight: 300;
-  font-size: 1.75em;
-  line-height: 0.75em;
-  color: #000;
+const Toggle = styled.div`
+  display: none;
+  height: 100%;
+  cursor: pointer;
+  padding: 0 10vw;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `
 
-const NavLinks = styled.div`
+const Navbox = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    justify-content: flex-start;
+    padding-top: 10vh;
+    background-color: #fff;
+    transition: all 0.3s ease-in;
+    top: 8vh;
+    left: ${props => (props.open ? "-100%" : "0")};
+  }
 `
 
-const Link = styled.p`
-  color: blue;
-  margin: 4px;
+const Hamburger = styled.div`
+  background-color: #111;
+  width: 30px;
+  height: 3px;
+  transition: all 0.3s linear;
+  align-self: center;
+  position: relative;
+  transform: ${props => (props.open ? "rotate(-45deg)" : "inherit")};
+
+  ::before,
+  ::after {
+    width: 30px;
+    height: 3px;
+    background-color: #111;
+    content: "";
+    position: absolute;
+    transition: all 0.3s linear;
+  }
+
+  ::before {
+    transform: ${props =>
+      props.open ? "rotate(-90deg) translate(-10px, 0px)" : "rotate(0deg)"};
+    top: -10px;
+  }
+
+  ::after {
+    opacity: ${props => (props.open ? "0" : "1")};
+    transform: ${props => (props.open ? "rotate(90deg) " : "rotate(0deg)")};
+    top: 10px;
+  }
 `
 
 export default Navbar
