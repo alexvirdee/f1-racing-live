@@ -6,7 +6,7 @@ import { Link } from "gatsby"
 const Logo = () => {
   return (
     <LogoWrapper as={Link} to="/">
-      <StaticImage src="../../images/racing-flag-1.png" alt="racing-logo" />
+      <StaticImage src="../../images/racing-flag.png" alt="racing-logo" />
     </LogoWrapper>
   )
 }
