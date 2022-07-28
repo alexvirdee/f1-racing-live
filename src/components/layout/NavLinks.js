@@ -22,19 +22,6 @@ const NavLink = styled(Link)`
   transition: all 200ms ease-in;
   position: relative;
 
-  :after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 0%;
-    content: ".";
-    color: transparent;
-    background: #e10500;
-    height: 1px;
-    transition: all 0.4s ease-in;
-  }
-
   :hover {
     color: #e10500;
     ::after {

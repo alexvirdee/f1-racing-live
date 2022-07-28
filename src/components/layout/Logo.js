@@ -6,13 +6,15 @@ import { Link } from "gatsby"
 const Logo = () => {
   return (
     <LogoWrapper as={Link} to="/">
-      <StaticImage src="../../images/racing-flag.png" alt="racing-logo" />
+      <StaticImage src="../../images/racing-flag-1.png" alt="racing-logo" />
     </LogoWrapper>
   )
 }
 
 const LogoWrapper = styled.div`
-  margin: 0 auto;
+  padding-left: 12px;
+  width: 85px;
+  height: 75px;
 `
 
 export default Logo

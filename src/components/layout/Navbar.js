@@ -35,12 +35,11 @@ const Navigation = styled.nav`
   height: 8vh;
   display: flex;
   background-color: #fff;
-  justify-content: space-evenly;
+  justify-content: space-between;
   text-transform: uppercase;
-  border-bottom: 2px solid #33333320;
   margin: 0 auto;
-  z-index: 2;
-  align-self: center;
+  z-index: 200;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 
   @media (max-width: 768px) {
     justify-content: space-between;
