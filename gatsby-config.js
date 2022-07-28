@@ -6,10 +6,20 @@
 
 require("dotenv").config()
 
+const { createProxyMiddleware } = require("http-proxy-middleware")
+
 module.exports = {
+  developMiddleware: app => {
+    app.use(
+      "/api",
+      createProxyMiddleware({
+        target: "http://localhost:5000",
+      })
+    )
+  },
   proxy: {
     prefix: "/api",
-    url: "http://localhost:8000",
+    url: "http://localhost:5000",
   },
   plugins: [
     {

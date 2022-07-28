@@ -2,7 +2,8 @@ import React, { useEffect } from "react"
 import Navbar from "../components/layout/Navbar"
 import styled from "styled-components"
 
-const f1key = process.env.F1_API_KEY
+// const f1key = process.env.F1_API_KEY
+
 /**
  * Formula one API information for getting real time stats
  * https://coverage-matrix.sportradar.com/
@@ -12,29 +13,17 @@ const Home = () => {
   // Test getting some information from sportradar
   useEffect(() => {
     try {
-      const url = `https://api.sportradar.us/formula1/trial/v2/en/competitors/sr:competitor:7135/profile.json?api_key=${f1key}`
+      // const url = `https://api.sportradar.us/formula1/trial/v2/en/competitors/sr:competitor:7135/profile.json?api_key=${f1key}`
 
       const fetchData = async () => {
-        const data = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Accept: "*",
-            Connection: "keep-alive",
-            "Cache-Control": "no-cache",
-            "Access-Control-Allow-Origin": "http://localhost:8000/",
-            "Access-Control-Allow-Credentials": "true",
-          },
-        })
+        const data = await fetch("/api")
+          .then(res => res.json())
+          .then(json => console.log(json))
 
-        const json = await data.json()
-
-        return json
+        return data
       }
 
-      const result = fetchData()
-
-      console.log(`result ${result}`)
+      fetchData()
     } catch (error) {
       console.error(error)
     }
